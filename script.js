@@ -38,7 +38,7 @@ function renderData(dataSlice) {
   membresList.innerHTML = list;
 } //4
 
-form.addEventListener("submit", (e) => {
+/* form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log(input.value);
   let data = {
