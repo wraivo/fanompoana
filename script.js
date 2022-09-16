@@ -1,4 +1,4 @@
-fetch("https://https://wraivo.github.io/fanompoana/membres.html")
+fetch("https://fanompo-6a67.restdb.io/rest/services")
   .then((response) => {
     if (response.ok) {
       return response.json();
