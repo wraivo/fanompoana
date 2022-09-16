@@ -15,7 +15,7 @@ fetch("https://https://wraivo.github.io/fanompoana/membres.html")
   function displayCocktail(data) {
 	const cocktail = data.services[0];
 	const cocktailDiv = document.getElementById("cocktail");
-	const cocktailName = cocktail.anarFohy;
+	const cocktailName = cocktail.fohy;
 	const heading = document.createElement("h1");
 	heading.innerHTML = cocktailName;
 	cocktailDiv.appendChild(heading);}   
