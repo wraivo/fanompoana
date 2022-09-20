@@ -1,25 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Minimal HTML5 Document Showing How to use RestDB API and jQuery">
+	<title>RestDB jQuery example</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
+	<h1>RestDB jQuery boiler plate code</h1>
+	<div id="content">
+	</div>
 	<script>
-
-		const url = await fetch('https://fanompo-6a67.restdb.io/rest/membres');
-
-		async function getdata() {
-
-			const response = await fetch(url);
-			const data = response.json();
-			console.log(data);
-		};
-
-		getdata();
-
-
+		$(document).ready(function() {
+			/*
+				Inject the API key for every call to the database.
+			*/
+			$.ajaxPrefilter(function( options ) {
+				if ( !options.beforeSend) {
+					options.beforeSend = function (xhr) {
+						xhr.setRequestHeader('x-apikey', '63230d0d0282ae17e4905d69');
+					}
+				}
+			});
+			var makeHtmlItem = function(item) {
+				var element = $('<div></div>').attr('id', item._id);
+				element.append('<hr><span>'+item['fiantso']);
+				
+				return element;
+			}
+				GET 5 records from contact Collection.
+				Sort by _id in reverse order, i.e. newest first
+			*/
+			$.getJSON('https://fanompo-6a67.restdb.io/rest/membres?max=5&sort=_id&dir=-1', function(data){
+				$.each(data, function(key, item){
+					console.log(item);
+					$('#content').append(makeHtmlItem(item));
+				});
+			});
+		});
 	</script>
-</body>
+
+	</body>
 </html>
