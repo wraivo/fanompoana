@@ -29,7 +29,7 @@
 				}
 			});
 			
-		$.getJSON('https://fanompo-6a67.restdb.io/rest/membres?max=5&sort=_id&dir=-1', function(data){
+		$.getJSON('https://fanompo-6a67.restdb.io/rest/membres?q={}', function(data){
 				$.each(data, function(key, item){
 					console.log(item);
 					$('#content').append(makeHtmlItem(item));
