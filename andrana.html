@@ -21,9 +21,7 @@
 				
 				return element;
 			}
-				GET 5 records from contact Collection.
-				Sort by _id in reverse order, i.e. newest first
-			$.ajaxPrefilter(function( options ) {
+		$.ajaxPrefilter(function( options ) {
 				if ( !options.beforeSend) {
 					options.beforeSend = function (xhr) {
 						xhr.setRequestHeader('x-apikey', '63230d0d0282ae17e4905d69');
