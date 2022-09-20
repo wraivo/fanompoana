@@ -15,13 +15,6 @@
 			/*
 				Inject the API key for every call to the database.
 			*/
-			$.ajaxPrefilter(function( options ) {
-				if ( !options.beforeSend) {
-					options.beforeSend = function (xhr) {
-						xhr.setRequestHeader('x-apikey', '63230d0d0282ae17e4905d69');
-					}
-				}
-			});
 			var makeHtmlItem = function(item) {
 				var element = $('<div></div>').attr('id', item._id);
 				element.append('<hr><span>'+item['fiantso']);
@@ -30,8 +23,15 @@
 			}
 				GET 5 records from contact Collection.
 				Sort by _id in reverse order, i.e. newest first
-			*/
-			$.getJSON('https://fanompo-6a67.restdb.io/rest/membres?max=5&sort=_id&dir=-1', function(data){
+			$.ajaxPrefilter(function( options ) {
+				if ( !options.beforeSend) {
+					options.beforeSend = function (xhr) {
+						xhr.setRequestHeader('x-apikey', '63230d0d0282ae17e4905d69');
+					}
+				}
+			});
+			
+		$.getJSON('https://fanompo-6a67.restdb.io/rest/membres?max=5&sort=_id&dir=-1', function(data){
 				$.each(data, function(key, item){
 					console.log(item);
 					$('#content').append(makeHtmlItem(item));
